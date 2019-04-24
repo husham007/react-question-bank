@@ -1,9 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
+import questions from './data/questions.js'
+import Statement from './components/Statement.js';
+import Save from './components/Save';
+import List from './components/List';
+import Line from './components/Line';
+//import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
+class App extends React.Component{
+
+  constructor(){
+    super();
+    this.state = {statement: 'enter text from parent'};
+
+    this.stateHandler = this.stateHandler.bind(this);
+    this.save = this.save.bind(this);
+  }
+
+  stateHandler(val){
+   this.setState (val);
+  }
+
+  save (){
+    questions.questions.push(this.state);
+    //console.log(questions);
+  }
+
+  
+ /* return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -21,6 +45,27 @@ function App() {
       </header>
     </div>
   );
+  */
+ 
+ render(){
+  return (
+    <div>
+     <h1>Question Bank</h1>
+     <Line data = {questions.questions}/>
+    <Statement stateHandler = {this.stateHandler} type = 'statement'/>
+    <List runProcess = {this.stateHandler} type = 'category' data = {questions.categories}/>
+    <List runProcess = {this.stateHandler} type = 'types' data = {questions.types}/>
+    <Save buttonText = 'Save' runProcess = {this.save}/>
+    
+    </div>
+  );
+ }
 }
+
+
+ 
+
+
+
 
 export default App;
