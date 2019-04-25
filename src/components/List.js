@@ -6,6 +6,7 @@ class List extends React.Component {
     super(props);
     //props.parentState.val = 'enter text';
 
+
     this.handleList = this.handleList.bind(this);
   }
 
@@ -18,14 +19,14 @@ class List extends React.Component {
   }
   render() {
     let  types  = this.props.data;
-    
+    //console.log('hello list');
     return (
       <div className="save">
         <h3>{this.props.type}</h3>
-        <select onChange = {this.handleList}>
+        <select onChange = {this.handleList} value = {this.props.state[this.props.type]}>
           {types.map(type => (
             <option key={type} value={type}>
-              {type}
+              {type} 
             </option>
           ))}
         </select>

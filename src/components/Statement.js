@@ -21,7 +21,7 @@ handleChange(event) {
     render(){
         return (
             <div className = {this.props.type}>
-                <textarea onChange= {this.handleChange}></textarea>
+                <textarea onChange= {this.handleChange} value = {this.props.state[this.props.type]}></textarea>
             </div>
         );
     }
